@@ -1,73 +1,95 @@
-# React + TypeScript + Vite
+GitHub Repository Search and Bookmark App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a small React and TypeScript web application that allows users to search and bookmark GitHub repositories. It was developed as part of the Frontend Intern assignment for Powerplay, focusing on building a production-ready, performant, and maintainable frontend app under real-world constraints.
 
-Currently, two official plugins are available:
+Overview
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The application uses GitHub’s public Search API to fetch repository data based on user queries. It supports live searching with debounce, bookmarking repositories with persistence using localStorage, and filtering between all and bookmarked repositories. The UI is designed with TailwindCSS for a clean, responsive, and modern appearance.
 
-## React Compiler
+Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Search GitHub repositories with a debounced API call (350ms)
 
-## Expanding the ESLint configuration
+Display top 30 results with repository details
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Bookmark repositories and persist them using localStorage
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Toggle between all repositories and bookmarked only
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Responsive, minimal design built with TailwindCSS
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Handles loading, empty, and error states gracefully
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Optimized with React.memo, useCallback, and useMemo to prevent unnecessary re-renders
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Tech Stack
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React
+TypeScript
+TailwindCSS
+Vite
+ESLint and Prettier for linting and formatting
+
+Installation
+
+Clone the repository
+git clone https://github.com/megavathvenkatesh/github-search-bookmark.git
+
+cd github-search-bookmark
+
+Install dependencies
+npm install
+
+Run the development server
+npm run dev
+
+Build for production
+npm run build
+npm run preview
+
+Testing
+
+The app has been manually tested for:
+
+Search functionality using valid and invalid queries
+
+Debounced API calls to prevent overfetching
+
+Bookmark persistence after page reload
+
+“Bookmarked only” filter toggle
+
+Handling of empty, loading, and error states
+
+Design Decisions and Trade-offs
+
+Debounced API calls were implemented to optimize performance and reduce API requests.
+
+React Context was used to manage the bookmark state, ensuring global access and simplicity without external state libraries.
+
+localStorage was chosen for persistence because it is lightweight and avoids backend dependencies.
+
+TailwindCSS was selected to enable fast UI development and maintain a consistent design system.
+
+The scope was intentionally kept minimal (no pagination, authentication, or advanced search) to focus on the core requirements.
+
+The app prioritizes readability, performance, and maintainability over pixel-perfect design.
+
+Possible Next Steps
+
+Add pagination for large result sets
+
+Introduce GitHub authentication to bypass API rate limits
+
+Write automated tests using Jest and React Testing Library
+
+Implement dark mode and additional theming options
+
+Add sorting or filtering by language and stars
+
+Improve accessibility and keyboard navigation support
+
+Deployment
+
+The app is deployed on Vercel for easy access and live demonstration.
+Live Demo: https://github-search-bookmark-p7tr.vercel.app/
